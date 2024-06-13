@@ -1,0 +1,40 @@
+cabal-version:      3.0
+name:               peeksort
+version:            0.1.0.0
+license:            Apache-2.0
+license-file:       LICENSE
+author:             Alex Gerdes
+maintainer:         alexg@chalmers.se
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall
+
+executable peeksort
+    import:             warnings
+    main-is:            Main.hs
+    other-modules:      MergeSort,
+                        Timsort,
+                        Peeksort,
+                        Powersort
+    ghc-options:        -O2
+    build-depends:      base ^>=4.16.4.0,
+                        QuickCheck,
+                        criterion,
+                        containers,
+                        mtl
+    hs-source-dirs:     app, 
+                        src
+    default-language:   Haskell2010
+
+test-suite spec
+    type:               exitcode-stdio-1.0
+    main-is:            Test.hs
+    build-depends:      base ^>=4.16, 
+                        hspec,
+                        QuickCheck
+    hs-source-dirs:     test,
+                        src
+    other-modules:      Peeksort
+    default-language:   Haskell2010
